@@ -37,15 +37,12 @@ class Scanner(Node):
         laser_range[laser_range==0] = np.nan
         # find index with minimum value
         lr2i = np.nanargmin(laser_range)
-
-        # Map index to angle using LaserScan metadata
+        # Map values to 360 degrees
         angle_rad = msg.angle_min + lr2i * msg.angle_increment
         angle_deg = np.degrees(angle_rad)
 
-        #log the info
-        self.get_logger().info(
-        f'Shortest distance at {angle_deg:.1f} degrees'
-    )
+        # log the info
+        self.get_logger().info( f'Shortest distance at {angle_deg:.1f} degrees' )
 
 
 def main(args=None):
